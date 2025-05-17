@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title th:text="${book.title + ' - Details'}">Book Details</title>
+  <link rel="stylesheet" th:href="@{/style.css}" />
+  <style>
+    body {
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .book-detail-container {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .book-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #ff7675;
+      text-align: center;
+    }
+    .book-detail-card {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .book-detail-card img {
+      max-width: 220px;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .book-info {
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .book-info strong {
+      color: #ccc;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #ff7675;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .back-button:hover {
+      background-color: #e95d5d;
+    }
+  </style>
+</head>
+<body>
+<div class="book-detail-container">
+  <div class="book-title" th:text="${book.title}">Book Title</div>
+  <div class="book-detail-card">
+    <img th:src="${book.imageUrl != null ? book.imageUrl : '/logo.png'}" alt="Cover" />
+    <div class="book-info">
+      <p><strong>Author:</strong> <span th:text="${book.author}">Unknown</span></p>
+      <p><strong>Rating:</strong> <span th:text="${book.rating}">0.0</span></p>
+      <p><strong>Category:</strong> <span th:text="${book.category}">Unknown</span></p>
+      <p><strong>Description:</strong></p>
+      <p th:text="${book.description}">No description provided.</p>
+      <a href="/" class="back-button">← Back to Home</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

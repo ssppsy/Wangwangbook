@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wangwang Books</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+<!-- 顶部导航 -->
+<header class="site-header">
+  <nav class="main-nav">
+    <ul>
+      <li class="nav-logo">Wangwang Books</li>
+      <li><a href="/fiction">Fiction</a></li>
+      <li><a href="/history">History</a></li>
+      <li><a href="/scifi">Sci-Fi</a></li>
+      <li><a href="/humanities">Humanities</a></li>
+      <li><a href="/business">Business</a></li>
+      <li><a href="/art">Art</a></li>
+      <li class="user-item">
+        <a href="/login" class="avatar-link" onmouseover="showTooltip()" onmouseout="hideTooltip()">
+          <img th:src="@{/avatar.png}" alt="avatar" class="avatar">
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 页面顶部欢迎信息 -->
+<div th:if="${username}" style="text-align:center; margin-top: 1rem; font-size: 1.2rem; color: #74b9ff;">
+  👋 欢迎你，<span th:text="${username}">用户</span>！
+</div>
+
+<!-- 搜索栏 -->
+<form class="search-container" action="/search" method="get">
+  <input type="text" name="query" class="search-input" placeholder="Search books, authors or ISBN" required>
+  <button class="search-button">Search</button>
+</form>
+
+<!-- 推荐书籍-->
+<section class="recommendations">
+  <h2>Recommended Books</h2>
+  <div class="book-carousel">
+    <div class="book-card" th:each="book : ${recommendations}">
+      <a th:href="@{'/books/' + ${book.id}}" class="book-card">
+        <img th:src="${book.imageUrl != null and book.imageUrl != '' ? book.imageUrl : '/logo.png'}" alt="Book cover">
+        <p th:text="${book.title}">Book Title</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 榜单 -->
+<section class="rankings">
+  <h2>Wangwang Books Rankings</h2>
+
+  <div class="rank-card">
+    <h3>Monthly Hot Books</h3>
+    <ol>
+      <li th:each="book : ${monthly}">
+        <img th:src="${book.imageUrl != null ? book.imageUrl : '/logo.png'}" alt="cover">
+        <span th:text="${book.title}">Book A</span>
+        <span th:text="${book.rating}" style="margin-left:auto; color:var(--accent); font-weight:bold">8.0</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="rank-card">
+    <h3>Top Rated Books</h3>
+    <ol>
+      <li th:each="book : ${top}">
+        <img th:src="${book.imageUrl != null ? book.imageUrl : '/logo.png'}" alt="cover">
+        <span th:text="${book.title}">Book X</span>
+        <span th:text="${book.rating}" style="margin-left:auto; color:var(--accent); font-weight:bold">9.5</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="rank-card">
+    <h3>Foreign Novels</h3>
+    <ol>
+      <li th:each="book : ${foreign}">
+        <img th:src="${book.imageUrl != null ? book.imageUrl : '/logo.png'}" alt="cover">
+        <span th:text="${book.title}">Book Y</span>
+        <span th:text="${book.rating}" style="margin-left:auto; color:var(--accent); font-weight:bold">9.3</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<script>
+  function showTooltip() {
+    document.getElementById('loginTooltip')?.style.setProperty("opacity", "1");
+  }
+  function hideTooltip() {
+    document.getElementById('loginTooltip')?.style.setProperty("opacity", "0");
+  }
+</script>
+</body>
+
+</html>

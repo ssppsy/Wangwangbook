@@ -1,0 +1,197 @@
+:root {
+  --bg: url('/bg.jpg');
+  --nav-bg: #333;
+  --white: #ffffff;
+  --accent: #ff7675;
+  --text: #f0f0f0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:"Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background: var(--bg) center/cover no-repeat fixed;
+  color: var(--text);
+}
+/* Navigation */
+.site-header { background: var(--nav-bg); padding:1rem; }
+.main-nav ul { list-style:none; display:flex; align-items:center; }
+.main-nav li { margin-right:2rem; }
+.nav-logo { font-size:2rem; font-weight:bold; color:var(--white); margin-right:calc(45ch + 20px); }
+.main-nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  position: relative;
+}
+.main-nav a:hover::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--white);
+}
+.main-nav a:hover { background:rgba(255,255,255,0.1); }
+.user-item { margin-left:auto; }
+.avatar { width:32px; height:32px; border-radius:50%; cursor:pointer; }
+
+/* Search bar */
+.search-container { display:flex; justify-content:center; align-items:center; margin:2rem auto; width:60%; background:transparent; }
+.search-input {
+  flex:1; padding:0.5rem; font-size:1rem;
+  border:1px solid rgba(255,255,255,0.6); background:transparent; color:var(--white);
+  border-radius:4px 0 0 4px;
+}
+.search-input::placeholder { color:rgba(255,255,255,0.7); }
+.search-button {
+  padding:0.5rem 1rem; font-size:1rem; border:none;
+  background:var(--white); color:#333; border-radius:0 4px 4px 0; cursor:pointer;
+}
+
+/* Recommended Books */
+.recommendations { margin:2rem auto; width:60%; }
+.book-carousel { display:flex; gap:1rem; overflow-x:auto; }
+.book-card { min-width:120px; text-align:center; }
+.book-card img { width:100%; border-radius:4px; }
+.book-card p { margin-top:0.5rem; color:var(--white); }
+
+/* Rankings */
+.rankings { display:flex; gap:1rem; margin:2rem auto; width:60%; }
+.rank-card { flex:1; background:rgba(0,0,0,0.5); padding:1rem; border-radius:8px; }
+.rank-card h3 { font-size:1.25rem; margin-bottom:0.5rem; }
+.rank-card ol { list-style:decimal; padding-left:1.5rem; }
+.rank-card li { display:flex; align-items:center; margin-bottom:0.5rem; }
+.rank-card img { width:32px; height:48px; margin-right:0.5rem; border-radius:2px; }
+.rank-card span { margin-left:auto; color:var(--accent); font-weight:bold; }
+
+
+/* Auth form styling: register & login */
+.auth-container {
+  max-width: 420px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  color: var(--white);
+}
+
+.auth-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: var(--white);
+}
+
+.auth-container form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.auth-container form input,
+.auth-container form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0);
+  color: var(--white);
+  font-size: 0.95rem;
+  transition: border 0.3s ease;
+}
+
+.auth-container form input:focus,
+.auth-container form select:focus {
+  border-color: var(--accent);
+  outline: none;
+  background: rgb(159, 159, 159);
+}
+
+.auth-container button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: var(--accent);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-container button[type="submit"]:hover {
+  background-color: #e15a5a;
+}
+
+.auth-container p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+
+.auth-container a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+/* 首页布局优化 */
+.recommendations, .rankings {
+  width: 90%;
+  max-width: 1200px;
+  margin: 3rem auto;
+}
+
+/* 推荐书籍卡片样式优化 */
+.book-carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+}
+
+.book-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+.book-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 响应式榜单样式 */
+.rankings {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .rankings {
+    flex-direction: row;
+  }
+}
+
+
+
+
