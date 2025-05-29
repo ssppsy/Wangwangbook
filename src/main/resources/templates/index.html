@@ -64,9 +64,11 @@
     <h3>Monthly Hot Books</h3>
     <ol>
       <li th:each="book : ${monthly}">
+        <a th:href="@{'/books/' + ${book.id}}" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
         <img th:src="${book.imageUrl != null ? book.imageUrl : '/logo.png'}" alt="cover">
         <span th:text="${book.title}">Book A</span>
         <span th:text="${book.rating}" style="margin-left:auto; color:var(--accent); font-weight:bold">8.0</span>
+        </a>>
       </li>
     </ol>
   </div>
@@ -75,9 +77,11 @@
     <h3>Top Rated Books</h3>
     <ol>
       <li th:each="book : ${top}">
+        <a th:href="@{'/books/' + ${book.id}}" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
         <img th:src="${book.imageUrl != null ? book.imageUrl : '/logo.png'}" alt="cover">
         <span th:text="${book.title}">Book X</span>
         <span th:text="${book.rating}" style="margin-left:auto; color:var(--accent); font-weight:bold">9.5</span>
+        </a>
       </li>
     </ol>
   </div>
@@ -86,9 +90,11 @@
     <h3>Foreign Novels</h3>
     <ol>
       <li th:each="book : ${foreign}">
+        <a th:href="@{'/books/' + ${book.id}}" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
         <img th:src="${book.imageUrl != null ? book.imageUrl : '/logo.png'}" alt="cover">
         <span th:text="${book.title}">Book Y</span>
         <span th:text="${book.rating}" style="margin-left:auto; color:var(--accent); font-weight:bold">9.3</span>
+        </a>
       </li>
     </ol>
   </div>

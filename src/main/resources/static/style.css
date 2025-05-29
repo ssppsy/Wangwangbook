@@ -1,5 +1,5 @@
 :root {
-  --bg: url('/bg.jpg');
+  --bg: url('bg.jpg');
   --nav-bg: #333;
   --white: #ffffff;
   --accent: #ff7675;
@@ -185,6 +185,33 @@ body {
   flex-direction: column;
   gap: 2rem;
 }
+
+.recommendations h2 {
+  font-size: 2rem;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.book-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.book-card p {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.nav-logo a {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--white);
+  text-decoration: none;
+}
+
 
 @media (min-width: 768px) {
   .rankings {
