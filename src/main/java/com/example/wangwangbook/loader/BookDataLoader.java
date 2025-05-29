@@ -31,7 +31,7 @@ public class BookDataLoader implements CommandLineRunner {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        for (int page = 1; page <= 50; page++) {
+        for (int page = 1; page <= 10; page++) {
             String url = "https://openlibrary.org/search.json?q=subject:fiction&page=" + page;
 
             try {

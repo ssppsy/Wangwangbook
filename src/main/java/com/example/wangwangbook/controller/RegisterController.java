@@ -44,7 +44,7 @@ public class RegisterController {
 
         User user = new User();
         user.setEmail(email);
-        user.setPassword(password); // 🔒 可后续加密
+        user.setPassword(password); //可后续加密
         user.setGender(gender);
         user.setBirthdate(LocalDate.parse(birthdate));
         user.setGenre(genre);

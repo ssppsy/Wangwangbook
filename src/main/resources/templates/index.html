@@ -32,6 +32,12 @@
 <!-- 页面顶部欢迎信息 -->
 <div th:if="${username}" style="text-align:center; margin-top: 1rem; font-size: 1.2rem; color: #74b9ff;">
   👋 欢迎你，<span th:text="${username}">用户</span>！
+  <!-- 退出登录按钮 -->
+  <form th:action="@{/logout}" method="post" style="display:inline;">
+    <button type="submit" style="margin-left: 1rem; padding: 0.3rem 0.8rem; background-color: #000000; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      LogOut
+    </button>
+  </form>
 </div>
 
 <!-- 搜索栏 -->
@@ -40,9 +46,10 @@
   <button class="search-button">Search</button>
 </form>
 
+
 <!-- 推荐书籍-->
 <section class="recommendations">
-  <h2>Recommended Books</h2>
+  <h2 th:text="${username != null} ? 'Books You May Like' : 'Recommended Books'">Recommended Books</h2>
   <div class="book-carousel">
     <div class="book-card" th:each="book : ${recommendations}">
       <a th:href="@{'/books/' + ${book.id}}" class="book-card">
