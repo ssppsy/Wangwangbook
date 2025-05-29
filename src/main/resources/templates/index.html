@@ -14,12 +14,9 @@
   <nav class="main-nav">
     <ul>
       <li class="nav-logo">Wangwang Books</li>
-      <li><a href="/fiction">Fiction</a></li>
-      <li><a href="/history">History</a></li>
-      <li><a href="/scifi">Sci-Fi</a></li>
-      <li><a href="/humanities">Humanities</a></li>
-      <li><a href="/business">Business</a></li>
-      <li><a href="/art">Art</a></li>
+      <li th:each="genre : ${genres}">
+        <a th:href="@{'/genre/' + ${genre}}" th:text="${#strings.capitalize(genre)}"></a>
+      </li>
       <li class="user-item">
         <a href="/login" class="avatar-link" onmouseover="showTooltip()" onmouseout="hideTooltip()">
           <img th:src="@{/avatar.png}" alt="avatar" class="avatar">
@@ -28,7 +25,6 @@
     </ul>
   </nav>
 </header>
-
 <!-- 页面顶部欢迎信息 -->
 <div th:if="${username}" style="text-align:center; margin-top: 1rem; font-size: 1.2rem; color: #74b9ff;">
   👋 欢迎你，<span th:text="${username}">用户</span>！

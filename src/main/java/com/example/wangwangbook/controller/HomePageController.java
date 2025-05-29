@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomePageController {
@@ -37,11 +38,25 @@ public class HomePageController {
             model.addAttribute("recommendations", bookRepository.findTop10ByOrderByRatingDesc());
         }
 
+
         // 这三类推荐始终显示
         model.addAttribute("monthly", bookRepository.findTop10ByCategoryOrderByRatingDesc("monthly"));
         model.addAttribute("top", bookRepository.findTop10ByCategoryOrderByRatingDesc("top"));
         model.addAttribute("foreign", bookRepository.findTop10ByCategoryOrderByRatingDesc("foreign"));
 
+        // 添加动态分类列表
+        model.addAttribute("genres", bookRepository.findDistinctCategory());
+
         return "index";
     }
+
+    @GetMapping("/genre/{genre}")
+    public String booksByGenre(@PathVariable String genre, Model model) {
+        List<Book> books = bookRepository.findByCategoryIgnoreCase(genre);
+        model.addAttribute("books", books);
+        model.addAttribute("genre", genre);
+        model.addAttribute("genres", bookRepository.findDistinctCategory());
+        return "genre-page";
+    }
+
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Wangwang Books - ' + ${genre}">Wangwang Books</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header class="site-header">
+  <nav class="main-nav">
+    <ul>
+      <li class="nav-logo">
+        <a th:href="@{/}">Wangwang Books</a>
+      </li>
+      <li th:each="g : ${genres}">
+        <a th:href="@{'/genre/' + ${g}}" th:text="${#strings.capitalize(g)}"></a>
+      </li>
+      <li class="user-item">
+        <a href="/login" class="avatar-link">
+          <img th:src="@{/avatar.png}" alt="avatar" class="avatar">
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 分类标题 -->
+<section class="recommendations">
+  <h2 th:text="'📚 ' + ${#strings.capitalize(genre)} + ' Books'" style="margin-bottom: 2rem; text-align: center;"></h2>
+
+  <div class="book-carousel">
+    <div class="book-card" th:each="book : ${books}">
+      <a th:href="@{'/books/' + ${book.id}}">
+        <img th:src="${book.imageUrl}" alt="book cover">
+        <p th:text="${book.title}">Book Title</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
