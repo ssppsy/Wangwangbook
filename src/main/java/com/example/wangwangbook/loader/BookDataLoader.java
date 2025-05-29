@@ -31,8 +31,8 @@ public class BookDataLoader implements CommandLineRunner {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        for (int page = 1; page <= 10; page++) {
-            String url = "https://openlibrary.org/search.json?q=subject:fiction&page=" + page;
+        for (int page = 1; page <= 5; page++) {
+            String url = "https://openlibrary.org/search.json?q=subject:science&page=" + page;
 
             try {
                 ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
@@ -52,7 +52,7 @@ public class BookDataLoader implements CommandLineRunner {
                     book.setAuthor(authors.get(0));
                     book.setImageUrl("https://covers.openlibrary.org/b/id/" + coverId + "-L.jpg");
                     book.setDescription("Imported from Open Library");
-                    book.setCategory("fiction");
+                    book.setCategory("science");
                     book.setRating(Math.random() * 5);
 
                     bookRepository.save(book);
@@ -64,7 +64,8 @@ public class BookDataLoader implements CommandLineRunner {
                 System.out.println("❌ Failed to load page " + page + ": " + e.getMessage());
             }
 
-            Thread.sleep(500);
+            Thread.sleep(50);
         }
     }
 }
+
