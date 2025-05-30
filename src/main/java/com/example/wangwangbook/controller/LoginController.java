@@ -35,7 +35,7 @@ public class LoginController {
             return "login";
         }
 
-        // ✅ 登录成功，保存用户到 Session
+        // 登录成功，保存用户到 Session
         session.setAttribute("loggedInUser", user);
 
         return "redirect:/";

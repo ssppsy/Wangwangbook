@@ -66,22 +66,38 @@
 <div class="profile-container">
   <div class="profile-title">The Personal Information</div>
 
-  <div class="profile-info">
-    <p><strong>Email:</strong> <span th:text="${user.email}">example@example.com</span></p>
-    <p><strong>Gender:</strong> <span th:text="${user.gender}">example@example.com</span></p>
-    <p><strong>Birthdate:</strong> <span th:text="${user.birthdate}">Fantasy</span></p>
-    <p><strong>Favorite Genre:</strong> <span th:text="${user.genre}">Fantasy</span></p>
-    <!-- 可按需添加更多字段 -->
-  </div>
+  <!-- 用表单包裹用户信息，用于提交 genre -->
+  <form th:action="@{/profile/update}" method="post">
+    <div class="profile-info">
+      <p><strong>Email:</strong> <span th:text="${user.email}">example@example.com</span></p>
+      <p><strong>Gender:</strong> <span th:text="${user.gender}">Male</span></p>
+      <p><strong>Birthdate:</strong> <span th:text="${user.birthdate}">1999-01-01</span></p>
 
-  <div class="btn-row">
-    <a href="/" class="btn-custom">← Back to Home</a>
+      <p>
+        <strong>Favorite Genre:</strong>
+        <label>
+          <select name="genre" required style="margin-left: 1rem; padding: 0.3rem 0.5rem; border-radius: 5px;">
+            <option value="">Select</option>
+            <option value="fiction"  th:selected="${user.genre == 'fiction'}">Fiction</option>
+            <option value="romance"  th:selected="${user.genre == 'romance'}">Romance</option>
+            <option value="science"  th:selected="${user.genre == 'science'}">Science</option>
+            <option value="history"  th:selected="${user.genre == 'history'}">History</option>
+            <option value="fantasy"  th:selected="${user.genre == 'fantasy'}">Fantasy</option>
+            <option value="mystery"  th:selected="${user.genre == 'mystery'}">Mystery</option>
+          </select>
+        </label>
+      </p>
+    </div>
 
-    <form th:action="@{/logout}" method="post" style="margin: 0;">
-      <button type="submit" class="btn-custom btn-danger">Logout</button>
-    </form>
-  </div>
+    <div class="btn-row">
+      <a href="/" class="btn-custom">← Back to Home</a>
+
+      <!-- 保存更改按钮 -->
+      <button type="submit" class="btn-custom btn-danger">Save Changes</button>
+    </div>
+  </form>
 </div>
+
 
 </body>
 </html>

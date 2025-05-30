@@ -32,7 +32,7 @@ public class BookDataLoader implements CommandLineRunner {
         RestTemplate restTemplate = new RestTemplate();
 
         for (int page = 1; page <= 2; page++) {
-            String url = "https://openlibrary.org/search.json?q=subject:fiction&page=" + page;
+            String url = "https://openlibrary.org/search.json?q=subject:fantasy&page=" + page;
 
             try {
                 ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
@@ -52,7 +52,7 @@ public class BookDataLoader implements CommandLineRunner {
                     book.setAuthor(authors.get(0));
                     book.setImageUrl("https://covers.openlibrary.org/b/id/" + coverId + "-L.jpg");
                     book.setDescription("Imported from Open Library");
-                    book.setCategory("fiction");
+                    book.setCategory("fantasy");
                     book.setRating(Math.random() * 5);
 
                     bookRepository.save(book);

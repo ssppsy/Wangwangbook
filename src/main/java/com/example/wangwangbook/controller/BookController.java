@@ -18,7 +18,6 @@ public class BookController {
     public String getBookDetail(@PathVariable Long id, Model model) {
         Book book = bookRepository.findById(id).orElse(null);
         if (book == null) {
-            //noinspection SpringMVCViewInspection
             return "error/404";
         }
         model.addAttribute("book", book);
