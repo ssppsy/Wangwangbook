@@ -7,7 +7,6 @@
   <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
-
 <body>
 <!-- 顶部导航栏 -->
 <header class="site-header">
@@ -27,7 +26,6 @@
     </ul>
   </nav>
 </header>
-
 <!-- 分类标题 -->
 <section class="recommendations">
   <h2 th:text="'📚 ' + ${#strings.capitalize(genre)} + ' Books'" style="margin-bottom: 2rem; text-align: center;"></h2>
@@ -41,6 +39,6 @@
     </div>
   </div>
 </section>
-
 </body>
+
 </html>

@@ -29,6 +29,7 @@ public class HomePageController {
 
             String genre = user.getGenre();
             List<Book> genreBooks = bookRepository.findTop10ByCategoryOrderByRatingDesc(genre);
+
             if (genreBooks.isEmpty()) {
                 genreBooks = bookRepository.findTop10ByOrderByRatingDesc(); // fallback
             }
