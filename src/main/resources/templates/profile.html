@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>用户信息</title>
+  <link rel="stylesheet" th:href="@{/style.css}" />
+  <style>
+    body {
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .profile-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .profile-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #74b9ff;
+      text-align: center;
+    }
+    .profile-info {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .profile-info strong {
+      color: #ccc;
+    }
+    .btn-row {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-custom {
+      padding: 0.6rem 1.2rem;
+      background-color: #74b9ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .btn-custom:hover {
+      background-color: #5fa8e2;
+    }
+    .btn-danger {
+      background-color: #ff7675;
+    }
+    .btn-danger:hover {
+      background-color: #e95d5d;
+    }
+  </style>
+</head>
+<body>
+
+<div class="profile-container">
+  <div class="profile-title">The Personal Information</div>
+
+  <div class="profile-info">
+    <p><strong>Email:</strong> <span th:text="${user.email}">example@example.com</span></p>
+    <p><strong>Gender:</strong> <span th:text="${user.gender}">example@example.com</span></p>
+    <p><strong>Birthdate:</strong> <span th:text="${user.birthdate}">Fantasy</span></p>
+    <p><strong>Favorite Genre:</strong> <span th:text="${user.genre}">Fantasy</span></p>
+    <!-- 可按需添加更多字段 -->
+  </div>
+
+  <div class="btn-row">
+    <a href="/" class="btn-custom">← Back to Home</a>
+
+    <form th:action="@{/logout}" method="post" style="margin: 0;">
+      <button type="submit" class="btn-custom btn-danger">Logout</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

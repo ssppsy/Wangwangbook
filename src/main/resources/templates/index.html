@@ -25,16 +25,35 @@
     </ul>
   </nav>
 </header>
+
+
 <!-- 页面顶部欢迎信息 -->
-<div th:if="${username}" style="text-align:center; margin-top: 1rem; font-size: 1.2rem; color: #74b9ff;">
-  👋 欢迎你，<span th:text="${username}">用户</span>！
-  <!-- 退出登录按钮 -->
-  <form th:action="@{/logout}" method="post" style="display:inline;">
-    <button type="submit" style="margin-left: 1rem; padding: 0.3rem 0.8rem; background-color: #000000; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      LogOut
-    </button>
-  </form>
+<div th:if="${session.loggedInUser != null}"
+     style="text-align:center; margin-top: 2rem; font-size: 1.2rem; color: #74b9ff;">
+
+  <p style="margin-bottom: 1rem;">
+    👋 欢迎你，<span th:text="${session.loggedInUser.email}">用户</span>！
+  </p>
+
+  <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+    <!-- Profile 按钮 -->
+    <a href="/profile"
+       style="display: inline-block; padding: 0.5rem 1.2rem; background-color: #000000; color: white; border-radius: 5px; text-decoration: none; font-size: 1rem; min-width: 100px; text-align: center;">
+      Profile
+    </a>
+
+    <!-- Logout 按钮 -->
+    <form th:action="@{/logout}" method="post" style="margin: 0;">
+      <button type="submit"
+              style="display: inline-block; padding: 0.5rem 1.2rem; background-color: #000000; color: white; border-radius: 5px; font-size: 1rem; min-width: 100px; cursor: pointer; text-align: center;">
+        LogOut
+      </button>
+    </form>
+  </div>
 </div>
+
+
+
 
 <!-- 搜索栏 -->
 <form class="search-container" action="/search" method="get">
